@@ -1,6 +1,6 @@
 # Environment Configuration
 ### Environment Configuration
--  Environment configuration using .env
+-  ✔ Environment configuration using .env
 -  Web server configuration Apache
 -  Using Valet for local development
 
@@ -8,8 +8,10 @@
 
 ### Routing
 -  Defining routes in routes/web.php
+-  ✔ Defining routes in routes/api.php
 -  Routes with parameters
--  Route grouping and prefixes
+-  ✔ Route grouping 
+-  ✔ Route prefixes
 
 ### Controllers
 -  Creating controllers
@@ -30,13 +32,13 @@
 # Eloquent ORM
 
 ### Models
-- Creating models
-- Database migrations
-- Eloquent relationships (one-to-one, one-to-many, many-to-many, polymorphic)
+- ✔ Creating models
+- ✔ Database migrations
+- ✔ Eloquent relationships (one-to-one, one-to-many, many-to-many, polymorphic)
 - Database documentation
 
 ### Queries and Eloquent
--  Basic queries (select, insert, update, delete)
+-  ✔ Basic queries (select, insert, update, delete)
 -  Advanced queries (scopes, eager loading)
 -  Eloquent Collections and mutators/accessors
 
@@ -44,7 +46,6 @@
 
 ### Authentication
 -  Laravel's authentication system
--  API authentication using Passport
 -  Customizing authentication routes and views
 
 ### Authorization
@@ -55,13 +56,13 @@
 # RESTful APIs
 
 ### Creating APIs
--  Structure of a RESTful API
--  API Controllers
+-  ✔ Structure of a RESTful API
+-  ✔ API Controllers
 -  Resource serialization with Laravel Resource
 
 ### API Authentication
--  Using Laravel Sanctum for API authentication
--  Implementing token-based authentication
+-  ✔ API authentication using Passport
+-  ✔ Implementing Oauth2 authentication
 
 # Testing
 
