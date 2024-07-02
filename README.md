@@ -1,66 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Environment Configuration
+### Environment Configuration
+-  Environment configuration using .env
+-  Web server configuration Apache
+-  Using Valet for local development
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Routing and Controllers
 
-## About Laravel
+### Routing
+-  Defining routes in routes/web.php
+-  Routes with parameters
+-  Route grouping and prefixes
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Controllers
+-  Creating controllers
+-  Resource Controllers
+-  Controller methods (index, create, store, show, edit, update, destroy)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Views and Blade Templating
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-  Views
+-  Creating and using views in Laravel
+-  Passing data to views
 
-## Learning Laravel
+-  Blade Templating
+-  Blade syntax
+-  Blade components and slots
+-  Custom Blade directives
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Eloquent ORM
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Models
+- Creating models
+- Database migrations
+- Eloquent relationships (one-to-one, one-to-many, many-to-many, polymorphic)
+- Database documentation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Queries and Eloquent
+-  Basic queries (select, insert, update, delete)
+-  Advanced queries (scopes, eager loading)
+-  Eloquent Collections and mutators/accessors
 
-## Laravel Sponsors
+# Authentication and Authorization
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Authentication
+-  Laravel's authentication system
+-  API authentication using Passport
+-  Customizing authentication routes and views
 
-### Premium Partners
+### Authorization
+-  Authorization policies
+-  Gates
+-  Roles and permissions using packages like Spatie Laravel Permission
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# RESTful APIs
 
-## Contributing
+### Creating APIs
+-  Structure of a RESTful API
+-  API Controllers
+-  Resource serialization with Laravel Resource
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### API Authentication
+-  Using Laravel Sanctum for API authentication
+-  Implementing token-based authentication
 
-## Code of Conduct
+# Testing
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Testing in Laravel
+-  Unit testing
+-  Feature testing
+-  Integration testing
+-  API testing with HTTP Tests
 
-## Security Vulnerabilities
+# Tasks and Events
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Scheduled Tasks
+-  Configuring and using Laravel's task scheduler
+-  Creating custom Artisan commands
 
-## License
+### Events and Listeners
+-  Creating and handling events
+-  Listeners and event subscriptions
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Performance Improvements
+### Optimization
+-  Caching routes and configurations
+-  Optimizing Eloquent queries
+-  Using Redis and Memcached
+
+# Debugging
+### Debugging with XDebug
+-  Setting up XDebug with Laravel
+-  Configuring XDebug in your development environment
+-  Debugging techniques and tips using XDebug
+
+# Deployment and Maintenance
+### Deployment
+-  Deploying on shared hosting and VPS
+-  Using platforms like Forge and Vapor
+-  Continuous Integration and Continuous Deployment (CI/CD)
+
+### Maintenance
+-  Updating Laravel and dependencies
+-  Backup and recovery management
+
+# Best Practices and Resources
+
+### Best Practices
+-  Clean and structured code
+-  Security in Laravel
+-  Dependency management with Composer
+
+### Resources and Community
+-  Official documentation
+-  Forums and communities
+-  Recommended tutorials and courses
