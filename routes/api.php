@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\ConfigurationController;
+use App\Http\Controllers\Api\DeviceController;
+use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\ReportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DeviceController;
-use App\Http\Controllers\ConfigurationController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ReportController;
 
 // Default route
 Route::get('/user', function (Request $request) {
