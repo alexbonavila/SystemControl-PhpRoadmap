@@ -56,7 +56,7 @@ class UserTokenTest extends TestCase
             'refresh_token',
         ]);
 
-        return ['access_token'=>$response->json()->access_token, 'user_id'=>$user->id];
+        return ['access_token'=>$response["access_token"], 'user_id'=>$user->id];
     }
 
     public function authenticated_user_get_info_route(): void
