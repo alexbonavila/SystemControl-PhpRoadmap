@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Device;
+use App\Models\Project;
 use App\Models\Report;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +25,10 @@ class ReportFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'reportable_id' => Device::factory(),
+            'reportable_type' => 'device',
+            'format' => $this->faker->randomElement(['PDF', 'CSV']),
+            'content' => $this->faker->paragraph,
         ];
     }
 }

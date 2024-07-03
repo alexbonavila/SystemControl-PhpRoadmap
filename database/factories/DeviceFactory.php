@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Device;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,10 +24,9 @@ class DeviceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word,
-            'type' => $this->faker->randomElement(['sensor', 'actuator']),
-            'status' => $this->faker->randomElement(['active', 'inactive']),
-            'project_id' => \App\Models\Project::factory(),
+            'user_id' => User::factory(),
+            'model' => $this->faker->word,
+            'serial_number' => $this->faker->unique()->numerify('SN######'),
         ];
     }
 }

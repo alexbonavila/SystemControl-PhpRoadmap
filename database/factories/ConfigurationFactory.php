@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Configuration;
+use App\Models\Device;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,9 +24,10 @@ class ConfigurationFactory extends Factory
     public function definition(): array
     {
         return [
-            'key' => $this->faker->word,
-            'value' => $this->faker->word,
-            'description' => $this->faker->sentence,
+            'device_id' => Device::factory(),
+            'cpu' => $this->faker->randomElement(['Intel', 'AMD']),
+            'ram' => $this->faker->numberBetween(4, 64) . 'GB',
+            'storage' => $this->faker->numberBetween(128, 2048) . 'GB',
         ];
     }
 }
