@@ -21,7 +21,7 @@ class UserTokenTest extends TestCase
     }
 
     #[Test]
-    public function user_can_create_token()
+    public function user_can_create_token(): array
     {
         // Crear un usuario
         $user = User::factory()->create([
@@ -54,6 +54,28 @@ class UserTokenTest extends TestCase
             'expires_in',
             'access_token',
             'refresh_token',
+        ]);
+
+        return ['access_token'=>$response->json()->access_token, 'user_id'=>$user->id];
+    }
+
+    public function authenticated_user_get_info_route(): void
+    {
+        $params = $this->user_can_create_token();
+
+        $access_token = $params['access_token'];
+        $user_id = $params['user_id'];
+
+
+        // Make authorized request with true token to /api/user
+        $response = $this->getJson('/api/user', [
+            'Authorization' => 'Bearer ' . $access_token,
+            'Accept' => 'application/json',
+        ]);
+
+        $response->assertStatus(ResponseAlias::HTTP_OK);
+        $response->assertJson([
+            'id' => $user_id,
         ]);
     }
 }
