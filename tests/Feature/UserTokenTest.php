@@ -14,22 +14,21 @@ class UserTokenTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
-        // Configurar el entorno de pruebas
     }
 
-    #[Test]
-    public function user_can_create_token(): array
+    private function createUser(): User
     {
-        // Crear un usuario
-        $user = User::factory()->create([
+        return User::factory()->create([
             'password' => Hash::make('password123')
         ]);
+    }
 
-        // Crear un cliente de Passport
-        $client = Client::factory()->create([
+    private function createClient(): Client
+    {
+        return Client::factory()->create([
             'user_id' => null,
             'name' => 'Test Client',
             'redirect' => 'http://localhost',
@@ -37,8 +36,10 @@ class UserTokenTest extends TestCase
             'password_client' => true,
             'revoked' => false,
         ]);
+    }
 
-        // Realizar la petición para obtener un token
+    private function getTokenForUser(User $user, Client $client): string
+    {
         $response = $this->postJson('/oauth/token', [
             'grant_type' => 'password',
             'client_id' => $client->id,
@@ -56,26 +57,34 @@ class UserTokenTest extends TestCase
             'refresh_token',
         ]);
 
-        return ['access_token'=>$response["access_token"], 'user_id'=>$user->id];
+        return $response['access_token'];
     }
 
-    public function authenticated_user_get_info_route(): void
+    #[Test]
+    public function user_can_create_token(): void
     {
-        $params = $this->user_can_create_token();
+        $user = $this->createUser();
+        $client = $this->createClient();
+        $token = $this->getTokenForUser($user, $client);
 
-        $access_token = $params['access_token'];
-        $user_id = $params['user_id'];
+        $this->assertNotEmpty($token);
+    }
 
+    #[Test]
+    public function authenticated_user_can_get_info(): void
+    {
+        $user = $this->createUser();
+        $client = $this->createClient();
+        $token = $this->getTokenForUser($user, $client);
 
-        // Make authorized request with true token to /api/user
         $response = $this->getJson('/api/user', [
-            'Authorization' => 'Bearer ' . $access_token,
+            'Authorization' => 'Bearer ' . $token,
             'Accept' => 'application/json',
         ]);
 
         $response->assertStatus(ResponseAlias::HTTP_OK);
         $response->assertJson([
-            'id' => $user_id,
+            'id' => $user->id,
         ]);
     }
 }
