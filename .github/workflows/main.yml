@@ -54,6 +54,12 @@ jobs:
           npm install
           php artisan key:generate
 
+      - name: Clear config cache
+        run: php artisan config:clear
+
+      - name: Clear route cache
+        run: php artisan route:clear
+
       - name: Run migrations
         env:
           DB_CONNECTION: mysql
