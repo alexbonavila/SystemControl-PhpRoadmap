@@ -45,6 +45,9 @@ jobs:
       - name: Generate Passport keys
         run: php artisan passport:keys
 
+      - name: Generate Database SQLite
+        run: touch database/database.sqlite
+
       - name: Run migrations
         run: php artisan migrate:refresh
 
