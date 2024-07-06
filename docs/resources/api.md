@@ -1,0 +1,5 @@
+- Passport installation
+- Token creations
+- Tests explanation
+- Controllers restructuring
+- API routes

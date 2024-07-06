@@ -1,0 +1,5 @@
+- Database diagram
+- Database explanation
+- Database models and migrations
+- Database factories
+- Database seeders
