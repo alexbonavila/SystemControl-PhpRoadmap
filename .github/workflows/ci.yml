@@ -1,0 +1,54 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+
+    - name: Install dependencies
+      run: composer install
+
+    - name: Copy .env
+      run: cp .env.example .env
+
+    - name: Generate key
+      run: php artisan key:generate
+
+    - name: Run migrations
+      run: php artisan migrate
+
+    - name: Run tests
+      run: php artisan test --coverage-clover=coverage.xml
+
+    - name: Install SonarScanner
+      run: |
+        wget -O sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+        unzip sonar-scanner.zip -d $HOME
+        export PATH="$HOME/sonar-scanner-4.6.2.2472-linux/bin:$PATH"
+
+    - name: Run SonarQube Analysis
+      env:
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        sonar-scanner \
+        -Dsonar.projectKey=your_project_key \
+        -Dsonar.sources=. \
+        -Dsonar.php.coverage.reportPaths=coverage.xml
