@@ -68,8 +68,10 @@ jobs:
           DB_DATABASE: laravel
           DB_USERNAME: laravel
           DB_PASSWORD: secret
-        run: |
-          php artisan migrate --force
+        run: php artisan migrate --force
+
+      - name: Install Passport
+        run: php artisan passport:install
 
       - name: Run tests
         env:
@@ -79,8 +81,7 @@ jobs:
           DB_DATABASE: laravel
           DB_USERNAME: laravel
           DB_PASSWORD: secret
-        run: |
-          php artisan test
+        run: php artisan test
 
       - name: Build assets
         run: npm run build
