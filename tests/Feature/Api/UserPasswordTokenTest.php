@@ -9,7 +9,7 @@ use Laravel\Passport\Client;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
 
-class UserTokenTest extends TestCase
+class UserPasswordTokenTest extends TestCase
 {
     use RefreshDatabase;
 
