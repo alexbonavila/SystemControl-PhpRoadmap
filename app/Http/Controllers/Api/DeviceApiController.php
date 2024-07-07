@@ -3,39 +3,42 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DeviceResource;
 use App\Models\Device;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class DeviceController extends Controller
+class DeviceApiController extends Controller
 {
     public function index()
     {
         $devices = Device::with('configuration')->get();
-        return response()->json($devices);
+        return DeviceResource::collection($devices);
     }
 
     public function store(Request $request)
     {
         $device = Device::create($request->all());
-        return response()->json($device, 201);
+        return new DeviceResource($device);
     }
 
     public function show($id)
     {
         $device = Device::with('configuration')->findOrFail($id);
-        return response()->json($device);
+        return new DeviceResource($device);
     }
 
     public function update(Request $request, $id)
     {
         $device = Device::findOrFail($id);
         $device->update($request->all());
-        return response()->json($device, 200);
+        return new DeviceResource($device);
     }
 
     public function destroy($id)
     {
         Device::findOrFail($id)->delete();
-        return response()->json(null, 204);
+        return response()->json(null, ResponseAlias::HTTP_NO_CONTENT);
     }
 }

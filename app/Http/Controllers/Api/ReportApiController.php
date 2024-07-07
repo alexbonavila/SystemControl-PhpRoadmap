@@ -3,39 +3,43 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ReportResource;
 use App\Models\Report;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class ReportController extends Controller
+class ReportApiController extends Controller
 {
     public function index()
     {
         $reports = Report::all();
-        return response()->json($reports);
+        return ReportResource::collection($reports);
     }
 
     public function store(Request $request)
     {
         $report = Report::create($request->all());
-        return response()->json($report, 201);
+        return new ReportResource($report);
     }
 
     public function show($id)
     {
         $report = Report::findOrFail($id);
-        return response()->json($report);
+        return new ReportResource($report);
     }
 
     public function update(Request $request, $id)
     {
         $report = Report::findOrFail($id);
         $report->update($request->all());
-        return response()->json($report, 200);
+        return new ReportResource($report);
     }
 
     public function destroy($id)
     {
         Report::findOrFail($id)->delete();
-        return response()->json(null, 204);
+        return response()->json(null, ResponseAlias::HTTP_NO_CONTENT);
     }
 }

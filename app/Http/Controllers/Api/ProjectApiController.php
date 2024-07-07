@@ -3,40 +3,43 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProjectResource;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class ProjectController extends Controller
+class ProjectApiController extends Controller
 {
     public function index()
     {
         $projects = Project::with('users')->get();
-        return response()->json($projects);
+        return ProjectResource::collection($projects);
     }
 
     public function store(Request $request)
     {
         $project = Project::create($request->all());
-        return response()->json($project, 201);
+        return new ProjectResource($project);
     }
 
     public function show($id)
     {
         $project = Project::with('users')->findOrFail($id);
-        return response()->json($project);
+        return new ProjectResource($project);
     }
 
     public function update(Request $request, $id)
     {
         $project = Project::findOrFail($id);
         $project->update($request->all());
-        return response()->json($project, 200);
+        return new ProjectResource($project);
     }
 
     public function destroy($id)
     {
         Project::findOrFail($id)->delete();
-        return response()->json(null, 204);
+        return response()->json(null, ResponseAlias::HTTP_NO_CONTENT);
     }
 
     public function attachUser(Request $request, $projectId)

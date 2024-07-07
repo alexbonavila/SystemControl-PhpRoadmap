@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\ConfigurationController;
-use App\Http\Controllers\Api\DeviceController;
-use App\Http\Controllers\Api\ProjectController;
-use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\ConfigurationApiController;
+use App\Http\Controllers\Api\DeviceApiController;
+use App\Http\Controllers\Api\ProjectApiController;
+use App\Http\Controllers\Api\ReportApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,11 +14,11 @@ Route::get('/user', function (Request $request) {
 
 // Application Routes
 Route::middleware('auth:api')->group(function () {
-    Route::apiResource('devices', DeviceController::class);
-    Route::apiResource('configurations', ConfigurationController::class);
-    Route::apiResource('projects', ProjectController::class);
-    Route::apiResource('reports', ReportController::class);
+    Route::apiResource('devices', DeviceApiController::class);
+    Route::apiResource('configurations', ConfigurationApiController::class);
+    Route::apiResource('projects', ProjectApiController::class);
+    Route::apiResource('reports', ReportApiController::class);
 
-    Route::post('projects/{project}/attach-user', [ProjectController::class, 'attachUser']);
-    Route::post('projects/{project}/detach-user', [ProjectController::class, 'detachUser']);
+    Route::post('projects/{project}/attach-user', [ProjectApiController::class, 'attachUser']);
+    Route::post('projects/{project}/detach-user', [ProjectApiController::class, 'detachUser']);
 });
