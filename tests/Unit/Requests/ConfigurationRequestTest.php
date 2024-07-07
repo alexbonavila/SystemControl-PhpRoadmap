@@ -29,7 +29,7 @@ class ConfigurationRequestTest extends TestCase
         $this->assertTrue($validator->passes());
     }
 
-    public function test_configuration_request_validation_fails_repeated_device()
+    public function test_configuration_request_validation_repeated_device_fails()
     {
         $device = Device::factory()->create();
         $request = new ConfigurationRequest();
@@ -55,7 +55,7 @@ class ConfigurationRequestTest extends TestCase
         $this->assertTrue($validator->passes());
     }
 
-    public function test_configuration_request_validation_fails_device_no_exist()
+    public function test_configuration_request_validation_device_no_exist_fails()
     {
         $request = new ConfigurationRequest();
 

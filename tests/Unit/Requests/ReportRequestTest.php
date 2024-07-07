@@ -24,6 +24,23 @@ class ReportRequestTest extends TestCase
         $this->assertTrue($validator->passes());
     }
 
+    public function test_report_request_validation_invalid_format_fails()
+    {
+        $request = new ReportRequest();
+
+        $rules = $request->rules();
+
+        $validator = Validator::make([
+            'reportable_id' => 1,
+            'reportable_type' => 'App\\Models\\SomeModel',
+            'format' => 'PNG',
+            'content' => 'Report Content'
+        ], $rules);
+
+        $this->assertFalse($validator->passes());
+        $this->assertArrayHasKey('format', $validator->errors()->messages());
+    }
+
     public function test_report_request_validation_fails()
     {
         $request = new ReportRequest();
