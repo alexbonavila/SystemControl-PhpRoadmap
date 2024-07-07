@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Api;
 
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class ProjectApiControllerTest extends TestCase
 {

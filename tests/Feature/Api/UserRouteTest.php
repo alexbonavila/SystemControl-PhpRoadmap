@@ -1,14 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
-use App\Models\User;
 
 class UserRouteTest extends TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\DataModel;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Device;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DeviceTest extends TestCase
 {

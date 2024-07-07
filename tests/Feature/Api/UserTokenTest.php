@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Client;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
-use App\Models\User;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
-use Illuminate\Support\Facades\Hash;
+use Tests\TestCase;
 
 class UserTokenTest extends TestCase
 {
