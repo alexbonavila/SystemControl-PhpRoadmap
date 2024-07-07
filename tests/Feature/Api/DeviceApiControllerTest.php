@@ -6,7 +6,6 @@ use App\Models\Device;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
-use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class DeviceApiControllerTest extends TestCase
@@ -20,8 +19,7 @@ class DeviceApiControllerTest extends TestCase
         Passport::actingAs($this->user);
     }
 
-    #[Test]
-    public function it_can_list_devices()
+    public function test_it_can_list_devices()
     {
         Device::factory()->count(3)->create();
 
@@ -31,8 +29,7 @@ class DeviceApiControllerTest extends TestCase
             ->assertJsonCount(3, 'data');
     }
 
-    #[Test]
-    public function it_can_create_a_device()
+    public function test_it_can_create_a_device()
     {
         $data = [
             'user_id' => $this->user->id,
@@ -48,8 +45,7 @@ class DeviceApiControllerTest extends TestCase
         $this->assertDatabaseHas('devices', $data);
     }
 
-    #[Test]
-    public function it_can_show_a_device()
+    public function test_it_can_show_a_device()
     {
         $device = Device::factory()->create();
 
@@ -62,8 +58,7 @@ class DeviceApiControllerTest extends TestCase
             ]);
     }
 
-    #[Test]
-    public function it_can_update_a_device()
+    public function test_it_can_update_a_device()
     {
         $user = User::factory()->create();
         $device = Device::factory()->create(['user_id' => $user->id]);
@@ -83,8 +78,7 @@ class DeviceApiControllerTest extends TestCase
     }
 
 
-    #[Test]
-    public function it_can_delete_a_device()
+    public function test_it_can_delete_a_device()
     {
         $device = Device::factory()->create();
 

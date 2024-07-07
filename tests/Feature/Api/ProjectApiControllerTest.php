@@ -6,7 +6,6 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
-use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ProjectApiControllerTest extends TestCase
@@ -20,8 +19,7 @@ class ProjectApiControllerTest extends TestCase
         Passport::actingAs($this->user);
     }
 
-    #[Test]
-    public function it_can_list_projects()
+    public function test_it_can_list_projects()
     {
         Project::factory()->count(3)->create();
 
@@ -31,8 +29,7 @@ class ProjectApiControllerTest extends TestCase
             ->assertJsonCount(3, 'data');
     }
 
-    #[Test]
-    public function it_can_create_a_project()
+    public function test_it_can_create_a_project()
     {
         $data = [
             'name' => 'Project A',
@@ -47,8 +44,7 @@ class ProjectApiControllerTest extends TestCase
         $this->assertDatabaseHas('projects', $data);
     }
 
-    #[Test]
-    public function it_can_show_a_project()
+    public function test_it_can_show_a_project()
     {
         $project = Project::factory()->create();
 
@@ -61,8 +57,7 @@ class ProjectApiControllerTest extends TestCase
             ]);
     }
 
-    #[Test]
-    public function it_can_update_a_project()
+    public function test_it_can_update_a_project()
     {
         $project = Project::factory()->create();
 
@@ -79,8 +74,7 @@ class ProjectApiControllerTest extends TestCase
         $this->assertDatabaseHas('projects', $data);
     }
 
-    #[Test]
-    public function it_can_delete_a_project()
+    public function test_it_can_delete_a_project()
     {
         $project = Project::factory()->create();
 
@@ -91,8 +85,7 @@ class ProjectApiControllerTest extends TestCase
         $this->assertDatabaseMissing('projects', ['id' => $project->id]);
     }
 
-    #[Test]
-    public function it_can_attach_a_user_to_a_project()
+    public function test_it_can_attach_a_user_to_a_project()
     {
         $project = Project::factory()->create();
         $user = User::factory()->create();
@@ -110,8 +103,7 @@ class ProjectApiControllerTest extends TestCase
         ]);
     }
 
-    #[Test]
-    public function it_can_detach_a_user_from_a_project()
+    public function test_it_can_detach_a_user_from_a_project()
     {
         $project = Project::factory()->create();
         $user = User::factory()->create();

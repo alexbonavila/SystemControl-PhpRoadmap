@@ -7,7 +7,6 @@ use App\Models\Device;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
-use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ConfigurationApiControllerTest extends TestCase
@@ -21,8 +20,7 @@ class ConfigurationApiControllerTest extends TestCase
         Passport::actingAs($this->user);
     }
 
-    #[Test]
-    public function it_can_list_configurations()
+    public function test_it_can_list_configurations()
     {
         for ($i = 0; $i < 3; $i++) {
             $device = Device::factory()->create();
@@ -35,8 +33,7 @@ class ConfigurationApiControllerTest extends TestCase
             ->assertJsonCount(3, 'data');
     }
 
-    #[Test]
-    public function it_can_create_a_configuration()
+    public function test_it_can_create_a_configuration()
     {
         $device = Device::factory()->create();
         $data = [
@@ -54,8 +51,7 @@ class ConfigurationApiControllerTest extends TestCase
         $this->assertDatabaseHas('configurations', $data);
     }
 
-    #[Test]
-    public function it_can_show_a_configuration()
+    public function test_it_can_show_a_configuration()
     {
         $device = Device::factory()->create();
         $configuration = Configuration::factory()->create(['device_id' => $device->id]);
@@ -69,8 +65,7 @@ class ConfigurationApiControllerTest extends TestCase
             ]);
     }
 
-    #[Test]
-    public function it_can_update_a_configuration()
+    public function test_it_can_update_a_configuration()
     {
         $device = Device::factory()->create();
         $configuration = Configuration::factory()->create(['device_id' => $device->id]);
@@ -90,8 +85,7 @@ class ConfigurationApiControllerTest extends TestCase
         $this->assertDatabaseHas('configurations', $data);
     }
 
-    #[Test]
-    public function it_can_delete_a_configuration()
+    public function test_it_can_delete_a_configuration()
     {
         $device = Device::factory()->create();
         $configuration = Configuration::factory()->create(['device_id' => $device->id]);

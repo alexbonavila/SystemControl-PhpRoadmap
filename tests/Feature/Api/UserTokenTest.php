@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Client;
-use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
 
@@ -60,8 +59,7 @@ class UserTokenTest extends TestCase
         return $response['access_token'];
     }
 
-    #[Test]
-    public function user_can_create_token(): void
+    public function test_user_can_create_token(): void
     {
         $user = $this->createUser();
         $client = $this->createClient();
@@ -70,8 +68,7 @@ class UserTokenTest extends TestCase
         $this->assertNotEmpty($token);
     }
 
-    #[Test]
-    public function authenticated_user_can_get_info(): void
+    public function test_authenticated_user_can_get_info(): void
     {
         $user = $this->createUser();
         $client = $this->createClient();

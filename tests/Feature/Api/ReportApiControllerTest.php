@@ -6,7 +6,6 @@ use App\Models\Report;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
-use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ReportApiControllerTest extends TestCase
@@ -20,8 +19,7 @@ class ReportApiControllerTest extends TestCase
         Passport::actingAs($this->user);
     }
 
-    #[Test]
-    public function it_can_list_reports()
+    public function test_it_can_list_reports()
     {
         Report::factory()->count(3)->create();
 
@@ -31,8 +29,7 @@ class ReportApiControllerTest extends TestCase
             ->assertJsonCount(3, 'data');
     }
 
-    #[Test]
-    public function it_can_create_a_report()
+    public function test_it_can_create_a_report()
     {
         $data = [
             'reportable_id' => 1,
@@ -49,8 +46,7 @@ class ReportApiControllerTest extends TestCase
         $this->assertDatabaseHas('reports', $data);
     }
 
-    #[Test]
-    public function it_can_show_a_report()
+    public function test_it_can_show_a_report()
     {
         $report = Report::factory()->create();
 
@@ -63,8 +59,7 @@ class ReportApiControllerTest extends TestCase
             ]);
     }
 
-    #[Test]
-    public function it_can_update_a_report()
+    public function test_it_can_update_a_report()
     {
         $report = Report::factory()->create();
 
@@ -83,8 +78,7 @@ class ReportApiControllerTest extends TestCase
         $this->assertDatabaseHas('reports', $data);
     }
 
-    #[Test]
-    public function it_can_delete_a_report()
+    public function test_it_can_delete_a_report()
     {
         $report = Report::factory()->create();
 
