@@ -3,3 +3,5 @@
 - Tests explanation
 - Controllers restructuring
 - API routes
+- API Resources
+- API Doc
