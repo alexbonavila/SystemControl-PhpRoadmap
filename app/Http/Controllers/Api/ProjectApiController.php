@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Http\Requests\ProjectRequest;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ProjectApiController extends Controller
@@ -17,9 +17,9 @@ class ProjectApiController extends Controller
         return ProjectResource::collection($projects);
     }
 
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        $project = Project::create($request->all());
+        $project = Project::create($request->validated());
         return new ProjectResource($project);
     }
 
@@ -29,10 +29,10 @@ class ProjectApiController extends Controller
         return new ProjectResource($project);
     }
 
-    public function update(Request $request, $id)
+    public function update(ProjectRequest $request, $id)
     {
         $project = Project::findOrFail($id);
-        $project->update($request->all());
+        $project->update($request->validated());
         return new ProjectResource($project);
     }
 
@@ -46,13 +46,14 @@ class ProjectApiController extends Controller
     {
         $project = Project::findOrFail($projectId);
         $project->users()->attach($request->user_id);
-        return response()->json($project->users, 200);
+        return response()->json($project->users, ResponseAlias::HTTP_OK);
     }
 
     public function detachUser(Request $request, $projectId)
     {
         $project = Project::findOrFail($projectId);
         $project->users()->detach($request->user_id);
-        return response()->json($project->users, 200);
+        return response()->json($project->users, ResponseAlias::HTTP_OK);
     }
 }
+

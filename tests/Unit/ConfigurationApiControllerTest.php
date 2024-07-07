@@ -75,6 +75,7 @@ class ConfigurationApiControllerTest extends TestCase
         $configuration = Configuration::factory()->create(['device_id' => $device->id]);
 
         $data = [
+            'device_id' => $device->id,
             'cpu' => 'Intel i9',
             'ram' => '32GB',
             'storage' => '1TB SSD'

@@ -68,6 +68,9 @@ class ReportApiControllerTest extends TestCase
         $report = Report::factory()->create();
 
         $data = [
+            'reportable_id' => $report->reportable_id,
+            'reportable_type' => $report->reportable_type,
+            'format' => $report->format,
             'content' => 'Updated content'
         ];
 

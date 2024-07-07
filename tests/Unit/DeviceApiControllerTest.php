@@ -64,9 +64,11 @@ class DeviceApiControllerTest extends TestCase
     #[Test]
     public function it_can_update_a_device()
     {
-        $device = Device::factory()->create();
+        $user = User::factory()->create();
+        $device = Device::factory()->create(['user_id' => $user->id]);
 
         $data = [
+            'user_id' => $user->id,
             'model' => 'Model Y',
             'serial_number' => 'SN654321'
         ];
@@ -78,6 +80,7 @@ class DeviceApiControllerTest extends TestCase
 
         $this->assertDatabaseHas('devices', $data);
     }
+
 
     #[Test]
     public function it_can_delete_a_device()

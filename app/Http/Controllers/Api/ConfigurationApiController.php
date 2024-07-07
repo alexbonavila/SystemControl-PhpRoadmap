@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ConfigurationResource;
 use App\Models\Configuration;
-use Illuminate\Http\Request;
+use App\Http\Requests\ConfigurationRequest;
+use App\Http\Resources\ConfigurationResource;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ConfigurationApiController extends Controller
@@ -16,9 +16,9 @@ class ConfigurationApiController extends Controller
         return ConfigurationResource::collection($configurations);
     }
 
-    public function store(Request $request)
+    public function store(ConfigurationRequest $request)
     {
-        $configuration = Configuration::create($request->all());
+        $configuration = Configuration::create($request->validated());
         return new ConfigurationResource($configuration);
     }
 
@@ -28,10 +28,10 @@ class ConfigurationApiController extends Controller
         return new ConfigurationResource($configuration);
     }
 
-    public function update(Request $request, $id)
+    public function update(ConfigurationRequest $request, $id)
     {
         $configuration = Configuration::findOrFail($id);
-        $configuration->update($request->all());
+        $configuration->update($request->validated());
         return new ConfigurationResource($configuration);
     }
 
@@ -41,3 +41,4 @@ class ConfigurationApiController extends Controller
         return response()->json(null, ResponseAlias::HTTP_NO_CONTENT);
     }
 }
+

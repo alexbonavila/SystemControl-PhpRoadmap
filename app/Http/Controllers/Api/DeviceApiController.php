@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\DeviceResource;
 use App\Models\Device;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Http\Requests\DeviceRequest;
+use App\Http\Resources\DeviceResource;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class DeviceApiController extends Controller
@@ -17,9 +17,9 @@ class DeviceApiController extends Controller
         return DeviceResource::collection($devices);
     }
 
-    public function store(Request $request)
+    public function store(DeviceRequest $request)
     {
-        $device = Device::create($request->all());
+        $device = Device::create($request->validated());
         return new DeviceResource($device);
     }
 
@@ -29,10 +29,10 @@ class DeviceApiController extends Controller
         return new DeviceResource($device);
     }
 
-    public function update(Request $request, $id)
+    public function update(DeviceRequest $request, $id)
     {
         $device = Device::findOrFail($id);
-        $device->update($request->all());
+        $device->update($request->validated());
         return new DeviceResource($device);
     }
 
