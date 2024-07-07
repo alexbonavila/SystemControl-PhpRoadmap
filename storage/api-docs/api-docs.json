@@ -8,6 +8,9 @@
     "paths": {
         "/api/configurations": {
             "get": {
+                "tags": [
+                    "Configuration"
+                ],
                 "summary": "Get all configurations",
                 "operationId": "e5683000f17d7010799113d51c64823b",
                 "responses": {
@@ -17,6 +20,9 @@
                 }
             },
             "post": {
+                "tags": [
+                    "Configuration"
+                ],
                 "summary": "Create a new configuration",
                 "operationId": "1741f4f768d3be14e9f191105f1d2890",
                 "requestBody": {
@@ -36,6 +42,9 @@
         },
         "/api/configurations/{id}": {
             "get": {
+                "tags": [
+                    "Configuration"
+                ],
                 "summary": "Get a configuration by ID",
                 "operationId": "25af145d1c4d9daf04455e50649ae23a",
                 "parameters": [
@@ -56,6 +65,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "Configuration"
+                ],
                 "summary": "Update a configuration by ID",
                 "operationId": "f065def527864d812e4bd8edbb1282e4",
                 "parameters": [
@@ -84,6 +96,9 @@
                 }
             },
             "delete": {
+                "tags": [
+                    "Configuration"
+                ],
                 "summary": "Delete a configuration by ID",
                 "operationId": "d4a2fbd24ec4cb9303c710efd70f0758",
                 "parameters": [
@@ -106,6 +121,9 @@
         },
         "/api/devices": {
             "get": {
+                "tags": [
+                    "Device"
+                ],
                 "summary": "Get all devices",
                 "operationId": "20e3960423b8be0d022ab2575633dd97",
                 "responses": {
@@ -115,6 +133,9 @@
                 }
             },
             "post": {
+                "tags": [
+                    "Device"
+                ],
                 "summary": "Create a new device",
                 "operationId": "115787e47dc1f903d3eb134eea20f771",
                 "requestBody": {
@@ -134,6 +155,9 @@
         },
         "/api/devices/{id}": {
             "get": {
+                "tags": [
+                    "Device"
+                ],
                 "summary": "Get a device by ID",
                 "operationId": "2aaa2b8a50350fc7fa6003b3628a3189",
                 "parameters": [
@@ -154,6 +178,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "Device"
+                ],
                 "summary": "Update a device by ID",
                 "operationId": "27abe1c8bc428f496b737107f6420887",
                 "parameters": [
@@ -182,6 +209,9 @@
                 }
             },
             "delete": {
+                "tags": [
+                    "Device"
+                ],
                 "summary": "Delete a device by ID",
                 "operationId": "02bb1c147791641c98d934a861267bfe",
                 "parameters": [
@@ -204,6 +234,9 @@
         },
         "/api/projects": {
             "get": {
+                "tags": [
+                    "Project"
+                ],
                 "summary": "Get all projects",
                 "operationId": "56b787d17379644f68212ab86364ed3d",
                 "responses": {
@@ -213,6 +246,9 @@
                 }
             },
             "post": {
+                "tags": [
+                    "Project"
+                ],
                 "summary": "Create a new project",
                 "operationId": "917367c9b63c2908d1ba5f05e635d374",
                 "requestBody": {
@@ -232,6 +268,9 @@
         },
         "/api/projects/{id}": {
             "get": {
+                "tags": [
+                    "Project"
+                ],
                 "summary": "Get a project by ID",
                 "operationId": "968df0a94f68b518ecbdfddb4116a589",
                 "parameters": [
@@ -252,6 +291,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "Project"
+                ],
                 "summary": "Update a project by ID",
                 "operationId": "872472c0089ecfc5a54fbbfec524c0cf",
                 "parameters": [
@@ -280,6 +322,9 @@
                 }
             },
             "delete": {
+                "tags": [
+                    "Project"
+                ],
                 "summary": "Delete a project by ID",
                 "operationId": "3b25180c4b7ff35401cde68f04605b10",
                 "parameters": [
@@ -302,6 +347,9 @@
         },
         "/api/projects/{id}/attach-user": {
             "post": {
+                "tags": [
+                    "Project"
+                ],
                 "summary": "Attach a user to a project",
                 "operationId": "e5d6a92c78a3b7766d05b409e20af3d8",
                 "parameters": [
@@ -332,6 +380,9 @@
         },
         "/api/projects/{id}/detach-user": {
             "post": {
+                "tags": [
+                    "Project"
+                ],
                 "summary": "Detach a user from a project",
                 "operationId": "f5912f0e0bd07f2490ea40c413518f03",
                 "parameters": [
@@ -362,6 +413,9 @@
         },
         "/api/reports": {
             "get": {
+                "tags": [
+                    "Report"
+                ],
                 "summary": "Get all reports",
                 "operationId": "036b90e95709d987dae32a2c6624394b",
                 "responses": {
@@ -371,6 +425,9 @@
                 }
             },
             "post": {
+                "tags": [
+                    "Report"
+                ],
                 "summary": "Create a new report",
                 "operationId": "a7c3e45d02c9eb8ae015b1a129d9f742",
                 "requestBody": {
@@ -390,6 +447,9 @@
         },
         "/api/reports/{id}": {
             "get": {
+                "tags": [
+                    "Report"
+                ],
                 "summary": "Get a report by ID",
                 "operationId": "5edd603b35ef6e708ee63892adf7ff56",
                 "parameters": [
@@ -410,6 +470,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "Report"
+                ],
                 "summary": "Update a report by ID",
                 "operationId": "5d2eccb20490c0c85802a8ce0b4259c0",
                 "parameters": [
@@ -438,6 +501,9 @@
                 }
             },
             "delete": {
+                "tags": [
+                    "Report"
+                ],
                 "summary": "Delete a report by ID",
                 "operationId": "4ca14e8e501adb6954caeccde5908b4b",
                 "parameters": [
@@ -458,5 +524,23 @@
                 }
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Configuration",
+            "description": "API Endpoints for Configurations"
+        },
+        {
+            "name": "Device",
+            "description": "API Endpoints for Devices"
+        },
+        {
+            "name": "Project",
+            "description": "API Endpoints for Projects"
+        },
+        {
+            "name": "Report",
+            "description": "API Endpoints for Reports"
+        }
+    ]
 }

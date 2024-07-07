@@ -18,6 +18,7 @@ class ReportApiController extends Controller
      * @OA\Get(
      *     path="/api/reports",
      *     summary="Get all reports",
+     *     tags={"Report"},
      *     @OA\Response(
      *         response=200,
      *         description="Successful response"
@@ -34,6 +35,7 @@ class ReportApiController extends Controller
      * @OA\Post(
      *     path="/api/reports",
      *     summary="Create a new report",
+     *     tags={"Report"},
      *     @OA\Response(
      *         response=201,
      *         description="Report created"
@@ -66,6 +68,7 @@ class ReportApiController extends Controller
      * @OA\Get(
      *     path="/api/reports/{id}",
      *     summary="Get a report by ID",
+     *     tags={"Report"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -89,6 +92,7 @@ class ReportApiController extends Controller
      * @OA\Put(
      *     path="/api/reports/{id}",
      *     summary="Update a report by ID",
+     *     tags={"Report"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -129,6 +133,7 @@ class ReportApiController extends Controller
      * @OA\Delete(
      *     path="/api/reports/{id}",
      *     summary="Delete a report by ID",
+     *     tags={"Report"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

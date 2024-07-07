@@ -18,6 +18,7 @@ class ProjectApiController extends Controller
      * @OA\Get(
      *     path="/api/projects",
      *     summary="Get all projects",
+     *     tags={"Project"},
      *     @OA\Response(
      *         response=200,
      *         description="Successful response"
@@ -34,6 +35,7 @@ class ProjectApiController extends Controller
      * @OA\Post(
      *     path="/api/projects",
      *     summary="Create a new project",
+     *     tags={"Project"},
      *     @OA\Response(
      *         response=201,
      *         description="Project created"
@@ -66,6 +68,7 @@ class ProjectApiController extends Controller
      * @OA\Get(
      *     path="/api/projects/{id}",
      *     summary="Get a project by ID",
+     *     tags={"Project"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -89,6 +92,7 @@ class ProjectApiController extends Controller
      * @OA\Put(
      *     path="/api/projects/{id}",
      *     summary="Update a project by ID",
+     *     tags={"Project"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -129,6 +133,7 @@ class ProjectApiController extends Controller
      * @OA\Delete(
      *     path="/api/projects/{id}",
      *     summary="Delete a project by ID",
+     *     tags={"Project"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -152,6 +157,7 @@ class ProjectApiController extends Controller
      * @OA\Post(
      *     path="/api/projects/{id}/attach-user",
      *     summary="Attach a user to a project",
+     *     tags={"Project"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -188,6 +194,7 @@ class ProjectApiController extends Controller
      * @OA\Post(
      *     path="/api/projects/{id}/detach-user",
      *     summary="Detach a user from a project",
+     *     tags={"Project"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

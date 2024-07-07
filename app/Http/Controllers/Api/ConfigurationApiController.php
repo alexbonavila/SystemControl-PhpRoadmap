@@ -17,6 +17,7 @@ class ConfigurationApiController extends Controller
      * @OA\Get(
      *     path="/api/configurations",
      *     summary="Get all configurations",
+     *     tags={"Configuration"},
      *     @OA\Response(
      *         response=200,
      *         description="Successful response"
@@ -33,6 +34,7 @@ class ConfigurationApiController extends Controller
      * @OA\Post(
      *     path="/api/configurations",
      *     summary="Create a new configuration",
+     *     tags={"Configuration"},
      *     @OA\Response(
      *         response=201,
      *         description="Configuration created"
@@ -65,6 +67,7 @@ class ConfigurationApiController extends Controller
      * @OA\Get(
      *     path="/api/configurations/{id}",
      *     summary="Get a configuration by ID",
+     *     tags={"Configuration"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -88,6 +91,7 @@ class ConfigurationApiController extends Controller
      * @OA\Put(
      *     path="/api/configurations/{id}",
      *     summary="Update a configuration by ID",
+     *     tags={"Configuration"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -128,6 +132,7 @@ class ConfigurationApiController extends Controller
      * @OA\Delete(
      *     path="/api/configurations/{id}",
      *     summary="Delete a configuration by ID",
+     *     tags={"Configuration"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

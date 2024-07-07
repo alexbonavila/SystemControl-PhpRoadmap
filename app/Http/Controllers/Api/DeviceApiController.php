@@ -17,6 +17,7 @@ class DeviceApiController extends Controller
      * @OA\Get(
      *     path="/api/devices",
      *     summary="Get all devices",
+     *     tags={"Device"},
      *     @OA\Response(
      *         response=200,
      *         description="Successful response"
@@ -33,6 +34,7 @@ class DeviceApiController extends Controller
      * @OA\Post(
      *     path="/api/devices",
      *     summary="Create a new device",
+     *     tags={"Device"},
      *     @OA\Response(
      *         response=201,
      *         description="Device created"
@@ -65,6 +67,7 @@ class DeviceApiController extends Controller
      * @OA\Get(
      *     path="/api/devices/{id}",
      *     summary="Get a device by ID",
+     *     tags={"Device"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -88,6 +91,7 @@ class DeviceApiController extends Controller
      * @OA\Put(
      *     path="/api/devices/{id}",
      *     summary="Update a device by ID",
+     *     tags={"Device"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -128,6 +132,7 @@ class DeviceApiController extends Controller
      * @OA\Delete(
      *     path="/api/devices/{id}",
      *     summary="Delete a device by ID",
+     *     tags={"Device"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
