@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Device;
 use Illuminate\Http\Request;
 
-class DeviceController extends Controller
+class DeviceApiController extends Controller
 {
     public function index()
     {
