@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Unit\Api;
+namespace Tests\Feature\Api;
 
 use App\Models\Configuration;
 use App\Models\Device;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Passport\Passport;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -17,7 +18,7 @@ class ConfigurationApiControllerTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        $this->actingAs($this->user, 'api');
+        Passport::actingAs($this->user);
     }
 
     #[Test]

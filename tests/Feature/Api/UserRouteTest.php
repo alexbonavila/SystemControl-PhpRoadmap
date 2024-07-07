@@ -16,7 +16,7 @@ class UserRouteTest extends TestCase
     #[Test]
     public function unauthenticated_users_cannot_access_user_route()
     {
-        $response = $this->get('api/user', ["Accept" => "application/json"]);
+        $response = $this->getJson('api/user');
 
         $response->assertStatus(ResponseAlias::HTTP_UNAUTHORIZED);
     }
@@ -28,7 +28,7 @@ class UserRouteTest extends TestCase
 
         Passport::actingAs($user);
 
-        $response = $this->get('api/user', ["Accept" => "application/json"]);
+        $response = $this->getJson('api/user');
 
         $response->assertStatus(ResponseAlias::HTTP_OK);
         $response->assertJson(['id' => $user->id]);
