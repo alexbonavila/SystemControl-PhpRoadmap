@@ -1,34 +1,24 @@
-<template>
-    <div>
-        <h1>Edit Project</h1>
-        <form @submit.prevent="submit">
-            <div>
-                <label for="name">Name:</label>
-                <input type="text" v-model="form.name" id="name">
-            </div>
-            <button type="submit">Update</button>
-        </form>
-    </div>
-</template>
+<script setup>
+import Project from '@/Pages/Projects/Project.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
-<script>
-import { Inertia } from '@inertiajs/inertia';
-
-export default {
-    props: {
-        project: Object
-    },
-    data() {
-        return {
-            form: {
-                name: this.project.name
-            }
-        }
-    },
-    methods: {
-        submit() {
-            Inertia.put(this.route('projects.update', this.project.id), this.form);
-        }
-    }
-}
+const props = defineProps(['project']);
 </script>
+
+<template>
+    <AppLayout title="Edit Project">
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                Edit Project
+            </h2>
+        </template>
+
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
+                    <Project :project="project" @close="$inertia.visit(route('projects.index'))" />
+                </div>
+            </div>
+        </div>
+    </AppLayout>
+</template>
