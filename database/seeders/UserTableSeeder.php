@@ -8,18 +8,18 @@ use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
+    private int $usersNumber = 10;
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // User::factory(10)->withPersonalTeam()->create();
-
         User::factory()->withPersonalTeam()->create([
-            'name' => 'Test User',
             'email' => 'test@test.com',
             'password' => bcrypt('12345678'),
-            'email_verified_at' => now(),
         ]);
+
+        User::factory($this->usersNumber)->withPersonalTeam()->create();
     }
 }
