@@ -4,69 +4,70 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Project;
+use App\Models\Report;
 use Inertia\Inertia;
 
 class ReportWebController extends Controller
 {
-    public function index()
+public function index()
     {
-        $projects = Project::all();
-        return Inertia::render('Projects/Index', [
-            'projects' => $projects
+        $reports = Report::all();
+        return Inertia::render('Reports/Index', [
+            'reports' => $reports
         ]);
     }
 
     public function show($id)
     {
-        $project = Project::find($id);
-        if (!$project) {
-            return redirect()->route('projects.index')->with('error', 'Project not found');
+        $report = Report::find($id);
+        if (!$report) {
+            return redirect()->route('reports.index')->with('error', 'Report not found');
         }
-        return Inertia::render('Projects/Show', [
-            'project' => $project
+        return Inertia::render('Reports/Show', [
+            'report' => $report
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Projects/Create');
+        return Inertia::render('Reports/Create');
     }
 
     public function store(Request $request)
     {
-        $project = Project::create($request->all());
-        return redirect()->route('projects.index')->with('success', 'Project created successfully');
+        $report = Report::create($request->all());
+        return redirect()->route('reports.index')->with('success', 'Report created successfully');
     }
 
     public function edit($id)
     {
-        $project = Project::find($id);
-        if (!$project) {
-            return redirect()->route('projects.index')->with('error', 'Project not found');
+        $report = Report::find($id);
+        if (!$report) {
+            return redirect()->route('reports.index')->with('error', 'Report not found');
         }
-        return Inertia::render('Projects/Edit', [
-            'project' => $project
+        return Inertia::render('Reports/Edit', [
+            'report' => $report
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        $project = Project::find($id);
-        if (!$project) {
-            return redirect()->route('projects.index')->with('error', 'Project not found');
+        $report = Report::find($id);
+        if (!$report) {
+            return redirect()->route('reports.index')->with('error', 'Report not found');
         }
-        $project->update($request->all());
-        return redirect()->route('projects.index')->with('success', 'Project updated successfully');
+        $report->update($request->all());
+        return redirect()->route('reports.index')->with('success', 'Report updated successfully');
     }
 
     public function destroy($id)
     {
-        $project = Project::find($id);
-        if (!$project) {
-            return redirect()->route('projects.index')->with('error', 'Project not found');
+        $report = Report::find($id);
+        if (!$report) {
+            return redirect()->route('reports.index')->with('error', 'Report not found');
         }
-        $project->delete();
-        return redirect()->route('projects.index')->with('success', 'Project deleted successfully');
+        $report->delete();
+        return redirect()->route('reports.index')->with('success', 'Report deleted successfully');
     }
 }
+
