@@ -21,7 +21,7 @@ class ConfigurationWebController extends Controller
     {
         $configuration = Configuration::find($id);
         if (!$configuration) {
-            return redirect()->route('configurations.index')->with('error', 'Configuration not found');
+            return redirect()->route('configurations.index')->with('error', 'Configuration.vue not found');
         }
         return Inertia::render('Configurations/Show', [
             'configuration' => $configuration
@@ -36,14 +36,14 @@ class ConfigurationWebController extends Controller
     public function store(Request $request)
     {
         $configuration = Configuration::create($request->all());
-        return redirect()->route('configurations.index')->with('success', 'Configuration created successfully');
+        return redirect()->route('configurations.index')->with('success', 'Configuration.vue created successfully');
     }
 
     public function edit($id)
     {
         $configuration = Configuration::find($id);
         if (!$configuration) {
-            return redirect()->route('configurations.index')->with('error', 'Configuration not found');
+            return redirect()->route('configurations.index')->with('error', 'Configuration.vue not found');
         }
         return Inertia::render('Configurations/Edit', [
             'configuration' => $configuration
@@ -54,19 +54,19 @@ class ConfigurationWebController extends Controller
     {
         $configuration = Configuration::find($id);
         if (!$configuration) {
-            return redirect()->route('configurations.index')->with('error', 'Configuration not found');
+            return redirect()->route('configurations.index')->with('error', 'Configuration.vue not found');
         }
         $configuration->update($request->all());
-        return redirect()->route('configurations.index')->with('success', 'Configuration updated successfully');
+        return redirect()->route('configurations.index')->with('success', 'Configuration.vue updated successfully');
     }
 
     public function destroy($id)
     {
         $configuration = Configuration::find($id);
         if (!$configuration) {
-            return redirect()->route('configurations.index')->with('error', 'Configuration not found');
+            return redirect()->route('configurations.index')->with('error', 'Configuration.vue not found');
         }
         $configuration->delete();
-        return redirect()->route('configurations.index')->with('success', 'Configuration deleted successfully');
+        return redirect()->route('configurations.index')->with('success', 'Configuration.vue deleted successfully');
     }
 }

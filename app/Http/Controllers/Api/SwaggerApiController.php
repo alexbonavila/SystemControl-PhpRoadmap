@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
  *     description="API Documentation for all endpoints"
  * )
  * @OA\Tag(
- *     name="Configuration",
+ *     name="Configuration.vue",
  *     description="API Endpoints for Configurations"
  * )
  * @OA\Tag(

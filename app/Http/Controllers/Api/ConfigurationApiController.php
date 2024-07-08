@@ -17,7 +17,7 @@ class ConfigurationApiController extends Controller
      * @OA\Get(
      *     path="/api/configurations",
      *     summary="Get all configurations",
-     *     tags={"Configuration"},
+     *     tags={"Configuration.vue"},
      *     @OA\Response(
      *         response=200,
      *         description="Successful response"
@@ -34,10 +34,10 @@ class ConfigurationApiController extends Controller
      * @OA\Post(
      *     path="/api/configurations",
      *     summary="Create a new configuration",
-     *     tags={"Configuration"},
+     *     tags={"Configuration.vue"},
      *     @OA\Response(
      *         response=201,
-     *         description="Configuration created"
+     *         description="Configuration.vue created"
      *     ),
      *     @OA\RequestBody(
      *         required=true,
@@ -67,7 +67,7 @@ class ConfigurationApiController extends Controller
      * @OA\Get(
      *     path="/api/configurations/{id}",
      *     summary="Get a configuration by ID",
-     *     tags={"Configuration"},
+     *     tags={"Configuration.vue"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -91,7 +91,7 @@ class ConfigurationApiController extends Controller
      * @OA\Put(
      *     path="/api/configurations/{id}",
      *     summary="Update a configuration by ID",
-     *     tags={"Configuration"},
+     *     tags={"Configuration.vue"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -117,7 +117,7 @@ class ConfigurationApiController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Configuration updated"
+     *         description="Configuration.vue updated"
      *     )
      * )
      */
@@ -132,7 +132,7 @@ class ConfigurationApiController extends Controller
      * @OA\Delete(
      *     path="/api/configurations/{id}",
      *     summary="Delete a configuration by ID",
-     *     tags={"Configuration"},
+     *     tags={"Configuration.vue"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -142,7 +142,7 @@ class ConfigurationApiController extends Controller
      *     ),
      *     @OA\Response(
      *         response=204,
-     *         description="Configuration deleted"
+     *         description="Configuration.vue deleted"
      *     )
      * )
      */
