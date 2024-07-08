@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 
 class ConfigurationTableSeeder extends Seeder
 {
-    private int $configurationsNumber = 10; // Same as $deviceNumber in DeviceTableSeeder
+    private int $configurationsNumber = 10;
 
     /**
      * Run the database seeds.
