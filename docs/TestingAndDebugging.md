@@ -1,0 +1,6 @@
+- Unit testing
+- Feature testing
+- E2E testing
+- Integration testing
+- XDebug
+- Coverage
