@@ -71,6 +71,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Mandatory to obtain information about PR
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_SCANNER_OPTS: -Dsonar.php.coverage.reportPaths=coverage.xml
-          SONAR_PROJECT_KEY: alexbonavila_SystemControl-PhpRoadmap
-          SONAR_ORGANIZATION: alexbonavila
+        with:
+          args: >
+            -Dsonar.projectKey=alexbonavila_SystemControl-PhpRoadmap
+            -Dsonar.organization=alexbonavila
+            -Dsonar.php.coverage.reportPaths=coverage.xml
