@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { usePage, router } from '@inertiajs/vue3';
+import { ref, onMounted } from 'vue';
+import { router, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Project from '@/Pages/Projects/Project.vue';
 
@@ -41,8 +41,10 @@ const deleteProject = (id) => {
 };
 
 const createProject = () => {
-    currentProject.value = { id: null, name: '' };
+    currentProject.value = { id: null, name: '', description: '' };
 };
+
+onMounted(fetchProjects);
 </script>
 
 <template>
@@ -61,6 +63,7 @@ const createProject = () => {
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -68,6 +71,7 @@ const createProject = () => {
                         <tr v-for="project in projects" :key="project.id">
                             <td>{{ project.id }}</td>
                             <td>{{ project.name }}</td>
+                            <td>{{ project.description }}</td>
                             <td>
                                 <button @click="showProject(project.id)">View</button>
                                 <button @click="editProject(project.id)">Edit</button>

@@ -43,6 +43,10 @@ const close = () => {
                 <label for="name">Name:</label>
                 <input type="text" v-model="form.name" id="name" :readonly="readonly">
             </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea v-model="form.description" id="description" :readonly="readonly"></textarea>
+            </div>
             <button type="submit" v-if="!readonly">Save</button>
             <button type="button" @click="close" v-else>Close</button>
         </form>

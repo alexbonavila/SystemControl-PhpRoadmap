@@ -14,7 +14,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    <Project :project="{ id: null, name: '' }" @close="$inertia.visit(route('projects.index'))" />
+                    <Project :project="{ id: null, name: '', description: '' }" @close="$inertia.visit(route('projects.index'))" />
                 </div>
             </div>
         </div>
