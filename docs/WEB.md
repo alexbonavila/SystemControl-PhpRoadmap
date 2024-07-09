@@ -3,3 +3,7 @@
   - Dark
 - Email verification
 - CORS enabled
+- Frontend
+  - Crud Structure
+  - Page Structure
+  - Packages used
