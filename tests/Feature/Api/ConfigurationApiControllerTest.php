@@ -27,7 +27,7 @@ class ConfigurationApiControllerTest extends TestCase
             Configuration::factory()->create(['device_id' => $device->id]);
         }
 
-        $response = $this->getJson(route('configurations.index'));
+        $response = $this->getJson('/api/configurations');
 
         $response->assertStatus(200)
             ->assertJsonCount(3, 'data');
@@ -43,7 +43,7 @@ class ConfigurationApiControllerTest extends TestCase
             'storage' => '512GB SSD'
         ];
 
-        $response = $this->postJson(route('configurations.store'), $data);
+        $response = $this->postJson('/api/configurations', $data);
 
         $response->assertStatus(201)
             ->assertJsonFragment($data);
@@ -56,7 +56,7 @@ class ConfigurationApiControllerTest extends TestCase
         $device = Device::factory()->create();
         $configuration = Configuration::factory()->create(['device_id' => $device->id]);
 
-        $response = $this->getJson(route('configurations.show', $configuration->id));
+        $response = $this->getJson("/api/configurations/{$configuration->id}");
 
         $response->assertStatus(200)
             ->assertJsonFragment([
@@ -77,7 +77,7 @@ class ConfigurationApiControllerTest extends TestCase
             'storage' => '1TB SSD'
         ];
 
-        $response = $this->putJson(route('configurations.update', $configuration->id), $data);
+        $response = $this->putJson("/api/configurations/{$configuration->id}", $data);
 
         $response->assertStatus(200)
             ->assertJsonFragment($data);
@@ -90,7 +90,7 @@ class ConfigurationApiControllerTest extends TestCase
         $device = Device::factory()->create();
         $configuration = Configuration::factory()->create(['device_id' => $device->id]);
 
-        $response = $this->deleteJson(route('configurations.destroy', $configuration->id));
+        $response = $this->deleteJson("/api/configurations/{$configuration->id}");
 
         $response->assertStatus(204);
 

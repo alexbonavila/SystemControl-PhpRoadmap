@@ -23,7 +23,7 @@ class DeviceApiControllerTest extends TestCase
     {
         Device::factory()->count(3)->create();
 
-        $response = $this->getJson(route('devices.index'));
+        $response = $this->getJson('/api/devices');
 
         $response->assertStatus(200)
             ->assertJsonCount(3, 'data');
@@ -37,7 +37,7 @@ class DeviceApiControllerTest extends TestCase
             'serial_number' => 'SN123456'
         ];
 
-        $response = $this->postJson(route('devices.store'), $data);
+        $response = $this->postJson('/api/devices', $data);
 
         $response->assertStatus(201)
             ->assertJsonFragment($data);
@@ -49,7 +49,7 @@ class DeviceApiControllerTest extends TestCase
     {
         $device = Device::factory()->create();
 
-        $response = $this->getJson(route('devices.show', $device->id));
+        $response = $this->getJson("/api/devices/{$device->id}");
 
         $response->assertStatus(200)
             ->assertJsonFragment([
@@ -69,7 +69,7 @@ class DeviceApiControllerTest extends TestCase
             'serial_number' => 'SN654321'
         ];
 
-        $response = $this->putJson(route('devices.update', $device->id), $data);
+        $response = $this->putJson("/api/devices/{$device->id}", $data);
 
         $response->assertStatus(200)
             ->assertJsonFragment($data);
@@ -82,7 +82,7 @@ class DeviceApiControllerTest extends TestCase
     {
         $device = Device::factory()->create();
 
-        $response = $this->deleteJson(route('devices.destroy', $device->id));
+        $response = $this->deleteJson("/api/devices/{$device->id}");
 
         $response->assertStatus(204);
 

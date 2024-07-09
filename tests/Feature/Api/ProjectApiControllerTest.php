@@ -23,7 +23,7 @@ class ProjectApiControllerTest extends TestCase
     {
         Project::factory()->count(3)->create();
 
-        $response = $this->getJson(route('projects.index'));
+        $response = $this->getJson('/api/projects');
 
         $response->assertStatus(200)
             ->assertJsonCount(3, 'data');
@@ -36,7 +36,7 @@ class ProjectApiControllerTest extends TestCase
             'description' => 'Description of Project A'
         ];
 
-        $response = $this->postJson(route('projects.store'), $data);
+        $response = $this->postJson('/api/projects', $data);
 
         $response->assertStatus(201)
             ->assertJsonFragment($data);
@@ -48,7 +48,7 @@ class ProjectApiControllerTest extends TestCase
     {
         $project = Project::factory()->create();
 
-        $response = $this->getJson(route('projects.show', $project->id));
+        $response = $this->getJson("/api/projects/{$project->id}");
 
         $response->assertStatus(200)
             ->assertJsonFragment([
@@ -66,7 +66,7 @@ class ProjectApiControllerTest extends TestCase
             'description' => 'Updated Description'
         ];
 
-        $response = $this->putJson(route('projects.update', $project->id), $data);
+        $response = $this->putJson("/api/projects/{$project->id}", $data);
 
         $response->assertStatus(200)
             ->assertJsonFragment($data);
@@ -78,7 +78,7 @@ class ProjectApiControllerTest extends TestCase
     {
         $project = Project::factory()->create();
 
-        $response = $this->deleteJson(route('projects.destroy', $project->id));
+        $response = $this->deleteJson("/api/projects/{$project->id}");
 
         $response->assertStatus(204);
 
