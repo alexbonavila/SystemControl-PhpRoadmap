@@ -23,7 +23,7 @@ class ReportApiControllerTest extends TestCase
     {
         Report::factory()->count(3)->create();
 
-        $response = $this->getJson(route('reports.index'));
+        $response = $this->getJson('/api/reports');
 
         $response->assertStatus(200)
             ->assertJsonCount(3, 'data');
@@ -38,7 +38,7 @@ class ReportApiControllerTest extends TestCase
             'content' => 'Report content'
         ];
 
-        $response = $this->postJson(route('reports.store'), $data);
+        $response = $this->postJson('/api/reports', $data);
 
         $response->assertStatus(201)
             ->assertJsonFragment($data);
@@ -50,7 +50,7 @@ class ReportApiControllerTest extends TestCase
     {
         $report = Report::factory()->create();
 
-        $response = $this->getJson(route('reports.show', $report->id));
+        $response = $this->getJson("/api/reports/{$report->id}");
 
         $response->assertStatus(200)
             ->assertJsonFragment([
@@ -70,7 +70,7 @@ class ReportApiControllerTest extends TestCase
             'content' => 'Updated content'
         ];
 
-        $response = $this->putJson(route('reports.update', $report->id), $data);
+        $response = $this->putJson("/api/reports/{$report->id}", $data);
 
         $response->assertStatus(200)
             ->assertJsonFragment($data);
@@ -82,7 +82,7 @@ class ReportApiControllerTest extends TestCase
     {
         $report = Report::factory()->create();
 
-        $response = $this->deleteJson(route('reports.destroy', $report->id));
+        $response = $this->deleteJson("/api/reports/{$report->id}");
 
         $response->assertStatus(204);
 
