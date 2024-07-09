@@ -24,7 +24,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.15.0'
+          node-version: '20.x'
 
       - name: Install NPM dependencies
         run: npm install
@@ -55,3 +55,24 @@ jobs:
 
       - name: Run tests
         run: XDEBUG_MODE=coverage php artisan test --coverage-clover=coverage.xml
+        
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Recomended for relevant analisys
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Mandatory to obtain information about PR
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=alexbonavila_SystemControl-PhpRoadmap
+            -Dsonar.organization=alexbonavila
+            -Dsonar.php.coverage.reportPaths=coverage.xml
