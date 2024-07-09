@@ -1,5 +1,0 @@
-- JetStream
-  - Teams
-  - Dark
-- Email verification
-- CORS enabled
