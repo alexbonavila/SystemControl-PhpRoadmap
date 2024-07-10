@@ -90,8 +90,8 @@
 ### Tasks and Events
 
 #### Scheduled Tasks
-- Configuring and using Laravel's task scheduler
-- Creating custom Artisan commands
+- ✔ Configuring and using Laravel task scheduler
+- ✔ Creating custom Artisan command
 
 #### Events and Listeners
 - Creating and handling events
