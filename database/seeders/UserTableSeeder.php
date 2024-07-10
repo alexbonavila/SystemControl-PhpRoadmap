@@ -17,27 +17,27 @@ class UserTableSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Test User',
-                'email' => 'test@test.com',
-                'password' => bcrypt('12345678'),
+                'name' => env('BASIC_NAME','Basic User'),
+                'email' => env('BASIC_EMAIL','basic@example.com'),
+                'password' => env('BASIC_PASSWORD', bcrypt('12345678')),
                 'role' => 'basic-user'
             ],
             [
-                'name' => 'Admin User',
-                'email' => 'admin@test.com',
-                'password' => bcrypt('12345678'),
+                'name' => env('ADMIN_NAME','Admin User'),
+                'email' => env('ADMIN_EMAIL','admin@example.com'),
+                'password' => env('ADMIN_PASSWORD', bcrypt('12345678')),
                 'role' => 'admin'
             ],
             [
-                'name' => 'Mantainer User',
-                'email' => 'mantainer@test.com',
-                'password' => bcrypt('12345678'),
+                'name' => env('MAINTAINER_NAME','Maintainer User'),
+                'email' => env('MAINTAINER_EMAIL','maintainer@example.com'),
+                'password' => env('MAINTAINER_PASSWORD', bcrypt('12345678')),
                 'role' => 'maintainer'
             ],
             [
-                'name' => 'Regular User',
-                'email' => 'user@test.com',
-                'password' => bcrypt('12345678'),
+                'name' => env('FULL_NAME','Regular User'),
+                'email' => env('FULL_EMAIL','user@example.com'),
+                'password' => env('FULL_PASSWORD', bcrypt('12345678')),
                 'role' => 'full-user'
             ]
         ];
@@ -53,9 +53,11 @@ class UserTableSeeder extends Seeder
             $user->assignRole($userData['role']);
         }
 
-        // Create additional users
-        User::factory($this->usersNumber)->withPersonalTeam()->create()->each(function ($user) {
-            $user->assignRole('basic-user');
-        });
+        if (env('APP_ENV') !== 'production') {
+            // Create additional users
+            User::factory($this->usersNumber)->withPersonalTeam()->create()->each(function ($user) {
+                $user->assignRole('basic-user');
+            });
+        }
     }
 }
