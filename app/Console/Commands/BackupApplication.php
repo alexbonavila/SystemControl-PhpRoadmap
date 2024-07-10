@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\BackupCompleted;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use RecursiveDirectoryIterator;
@@ -40,6 +41,8 @@ class BackupApplication extends Command
         $this->createZip($backupDir, $zipFile);
 
         File::deleteDirectory($backupDir);
+
+        event(new BackupCompleted($zipFile));
 
         $this->info('All backups have been created and zipped successfully.');
         return 0;
