@@ -1,0 +1,8 @@
+- Backup command
+  - Database
+  - .env's
+  - Storage keys
+- Backup job
+- Backup exceptions
+- Backup event
+- Backup notification
