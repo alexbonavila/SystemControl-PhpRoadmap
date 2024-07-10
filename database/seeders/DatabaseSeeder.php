@@ -16,11 +16,17 @@ class DatabaseSeeder extends Seeder
         Artisan::call('migrate:refresh');
 
         $this->call([
+            PermissionTableSeeder::class,
             UserTableSeeder::class,
-            ProjectTableSeeder::class,
-            DeviceTableSeeder::class,
-            ConfigurationTableSeeder::class,
-            ReportTableSeeder::class,
         ]);
+
+        if (env('APP_ENV') !== 'production') {
+            $this->call([
+                ProjectTableSeeder::class,
+                DeviceTableSeeder::class,
+                ConfigurationTableSeeder::class,
+                ReportTableSeeder::class,
+            ]);
+        }
     }
 }
