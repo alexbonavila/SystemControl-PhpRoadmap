@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         Artisan::call('migrate:refresh');
 
         $this->call([
+            PermissionTableSeeder::class,
             UserTableSeeder::class,
             ProjectTableSeeder::class,
             DeviceTableSeeder::class,
