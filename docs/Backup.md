@@ -2,6 +2,9 @@
   - Database
   - .env's
   - Storage keys
+- Backup Config
+  - $ crontab -e
+  - * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
 - Backup job
 - Backup exceptions
 - Backup event
