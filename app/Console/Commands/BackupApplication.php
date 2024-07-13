@@ -61,14 +61,13 @@ class BackupApplication extends Command
 
     private function backupDatabase($backupDir): void
     {
-        $dbHost = env('DB_HOST');
-        $dbUser = env('DB_USERNAME');
-        $dbPassword = env('DB_PASSWORD');
         $dbName = env('DB_DATABASE');
 
         $backupPath = $backupDir . '/' . $dbName . '_' . $this->datetimeBackup . '.sql';
 
-        $command = "mysqldump --user={$dbUser} --password={$dbPassword} --host={$dbHost} {$dbName} > {$backupPath}";
+        $configFilePath = storage_path("app/{$dbName}.cnf");
+        $command = "mysqldump --defaults-extra-file={$configFilePath} {$dbName} > {$backupPath}";
+
 
         $returnVar = NULL;
         $output = NULL;

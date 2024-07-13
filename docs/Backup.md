@@ -2,6 +2,7 @@
   - Database
   - .env's
   - Storage keys
+  - Create .cnf for security
 - Backup Config
   - $ crontab -e
   - ' * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1 '
