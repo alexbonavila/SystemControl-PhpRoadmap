@@ -2,8 +2,10 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\SendBackupNotificationException;
 use App\Models\User;
 use App\Mail\BackupCreated;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -27,13 +29,20 @@ class SendBackupNotification implements ShouldQueue
 
     /**
      * Execute the job.
+     * @throws SendBackupNotificationException
      */
     public function handle(): void
     {
-        $maintainers = User::role('maintainer')->get();
+        try {
 
-        foreach ($maintainers as $maintainer) {
-            Mail::to($maintainer->email)->send(new BackupCreated($this->backupInformation));
+            $maintainers = User::role('maintainer')->get();
+
+            foreach ($maintainers as $maintainer) {
+                Mail::to($maintainer->email)->send(new BackupCreated($this->backupInformation));
+            }
+
+        } catch (Exception $e) {
+            throw new SendBackupNotificationException($e->getMessage());
         }
     }
 }

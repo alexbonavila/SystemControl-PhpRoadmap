@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\UploadNewBackupException;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -25,16 +27,20 @@ class UploadNewBackup implements ShouldQueue
 
     /**
      * Execute the job.
+     * @throws UploadNewBackupException
      */
     public function handle(): void
     {
-        $sftpDisk = Storage::disk('sftp');
-        $localFilePath = storage_path('backups/' . $this->backupInformation['pathBackup']);
 
-        // TODO fix if
-        if ($sftpDisk->put($this->backupInformation['pathBackup'], fopen($localFilePath, 'r+'))) {
-        } else {
-            //TODO Launch exception
+        try {
+            $sftpDisk = Storage::disk('sftp');
+            $localFilePath = storage_path('backups/' . $this->backupInformation['pathBackup']);
+
+            if (!$sftpDisk->put($this->backupInformation['pathBackup'], fopen($localFilePath, 'r+'))) {
+                throw new Exception('Failed to upload backup.');
+            }
+        } catch (Exception $e) {
+            throw new UploadNewBackupException($e->getMessage());
         }
     }
 }

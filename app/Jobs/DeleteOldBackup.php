@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\DeleteOldBackupException;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -26,17 +28,21 @@ class DeleteOldBackup implements ShouldQueue
 
     /**
      * Execute the job.
+     * @throws DeleteOldBackupException
      */
     public function handle(): void
     {
-        $backupPath = storage_path('backups/');
-        $files = File::files($backupPath);
+        try {
+            $backupPath = storage_path('backups/');
+            $files = File::files($backupPath);
 
-        foreach ($files as $file) {
-            // Check if the file is older than 30 days
-            if ($file->getMTime() < now()->subDays(7)->getTimestamp()) {
-                File::delete($file->getRealPath());
+            foreach ($files as $file) {
+                if ($file->getMTime() < now()->subDays(7)->getTimestamp()) {
+                    File::delete($file->getRealPath());
+                }
             }
+        } catch (Exception $e) {
+            throw new DeleteOldBackupException($e->getMessage());
         }
     }
 }
