@@ -14,12 +14,12 @@ class BackupCompleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public string $backupInformation;
+    public array $backupInformation;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(string $backupInformation)
+    public function __construct(array $backupInformation)
     {
         $this->backupInformation = $backupInformation;
     }
