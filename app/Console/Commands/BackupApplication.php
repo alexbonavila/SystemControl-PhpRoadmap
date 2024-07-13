@@ -25,24 +25,35 @@ class BackupApplication extends Command
      */
     protected $description = 'Backup the database, .env files, and Passport keys';
 
+    protected $datetimeBackup;
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $backupDir = storage_path('backups/' . date('Y-m-d_H-i-s') . '_Backup');
+        $this->datetimeBackup = date('Y-m-d_H-i-s');
+
+        $backupDir = storage_path('backups/' . $this->datetimeBackup . '_Backup');
         File::makeDirectory($backupDir, 0755, true);
 
         $this->backupDatabase($backupDir);
         $this->backupEnvs($backupDir);
         $this->backupKeys($backupDir);
 
-        $zipFile = storage_path('backups/' . date('Y-m-d_H-i-s') . '_Backup.zip');
+        $zipFile = storage_path('backups/' . $this->datetimeBackup . '_Backup.zip');
         $this->createZip($backupDir, $zipFile);
 
         File::deleteDirectory($backupDir);
 
-        event(new BackupCompleted($zipFile));
+
+        $backupInformation = array(
+            "pathBackup" => $this->datetimeBackup . '_Backup.zip',
+            "datetimeBackup" => $this->datetimeBackup,
+            "sizeBackup" => filesize($zipFile),
+        );
+
+        event(new BackupCompleted($backupInformation));
 
         $this->info('All backups have been created and zipped successfully.');
         return 0;
@@ -55,7 +66,7 @@ class BackupApplication extends Command
         $dbPassword = env('DB_PASSWORD');
         $dbName = env('DB_DATABASE');
 
-        $backupPath = $backupDir . '/' . $dbName . '_' . date('Y-m-d_H-i-s') . '.sql';
+        $backupPath = $backupDir . '/' . $dbName . '_' . $this->datetimeBackup . '.sql';
 
         $command = "mysqldump --user={$dbUser} --password={$dbPassword} --host={$dbHost} {$dbName} > {$backupPath}";
 

@@ -3,24 +3,26 @@
 namespace App\Jobs;
 
 use App\Models\User;
+use App\Mail\BackupCreated;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class SendBackupNotification implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $backupPath;
+    public $backupInformation;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($backupPath)
+    public function __construct($backupInformation)
     {
-        $this->backupPath = $backupPath;
+        $this->backupInformation = $backupInformation;
     }
 
     /**
@@ -28,6 +30,10 @@ class SendBackupNotification implements ShouldQueue
      */
     public function handle(): void
     {
-        // Mail to notify backup performed
+        $maintainers = User::role('maintainer')->get();
+
+        foreach ($maintainers as $maintainer) {
+            Mail::to($maintainer->email)->send(new BackupCreated($this->backupInformation));
+        }
     }
 }

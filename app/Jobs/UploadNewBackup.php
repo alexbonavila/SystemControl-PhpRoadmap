@@ -12,14 +12,14 @@ class UploadNewBackup implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $backupPath;
+    public $backupInformation;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($backupPath)
+    public function __construct($backupInformation)
     {
-        $this->backupPath = $backupPath;
+        $this->backupInformation = $backupInformation;
     }
 
     /**
