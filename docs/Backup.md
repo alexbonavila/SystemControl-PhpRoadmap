@@ -4,7 +4,8 @@
   - Storage keys
 - Backup Config
   - $ crontab -e
-  - * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+  - ' * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1 '
+  - $ php artisan queue:work
 - Backup job
 - Backup exceptions
 - Backup event
