@@ -13,12 +13,14 @@ class BackupCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $backupInformation;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($backupInformation)
     {
-        //
+        $this->backupInformation = $backupInformation;
     }
 
     /**
@@ -37,7 +39,10 @@ class BackupCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.backup-created',
+            with: [
+                'backupInformation' => $this->backupInformation,
+            ],
         );
     }
 

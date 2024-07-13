@@ -15,14 +15,14 @@ class SendBackupNotification implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $backupPath;
+    public $backupInformation;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($backupPath)
+    public function __construct($backupInformation)
     {
-        $this->backupPath = $backupPath;
+        $this->backupInformation = $backupInformation;
     }
 
     /**
@@ -33,7 +33,7 @@ class SendBackupNotification implements ShouldQueue
         $maintainers = User::role('maintainer')->get();
 
         foreach ($maintainers as $maintainer) {
-            Mail::to($maintainer->email)->send(new BackupCreated($this->backupPath));
+            Mail::to($maintainer->email)->send(new BackupCreated($this->backupInformation));
         }
     }
 }

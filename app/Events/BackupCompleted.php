@@ -14,14 +14,14 @@ class BackupCompleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public string $backupPath;
+    public string $backupInformation;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(string $backupPath)
+    public function __construct(string $backupInformation)
     {
-        $this->backupPath = $backupPath;
+        $this->backupInformation = $backupInformation;
     }
 
     /**

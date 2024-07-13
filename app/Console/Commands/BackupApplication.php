@@ -50,7 +50,7 @@ class BackupApplication extends Command
         $backupInformation = array(
             "pathBackup" => $this->datetimeBackup . '_Backup.zip',
             "datetimeBackup" => $this->datetimeBackup,
-            ""
+            "sizeBackup" => filesize($zipFile),
         );
 
         event(new BackupCompleted($backupInformation));

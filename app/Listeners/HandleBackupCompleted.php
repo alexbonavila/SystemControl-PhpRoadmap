@@ -25,12 +25,12 @@ class HandleBackupCompleted
     public function handle(BackupCompleted $event): void
     {
         // Dispatch the job to delete the oldest backup
-        DeleteOldBackup::dispatch($event->backupPath);
+        DeleteOldBackup::dispatch($event->backupInformation);
 
         // Dispatch the job to upload the new backup to server
-        UploadNewBackup::dispatch($event->backupPath);
+        UploadNewBackup::dispatch($event->backupInformation);
 
         // Dispatch work to send email notifications
-        SendBackupNotification::dispatch($event->backupPath);
+        SendBackupNotification::dispatch($event->backupInformation);
     }
 }
