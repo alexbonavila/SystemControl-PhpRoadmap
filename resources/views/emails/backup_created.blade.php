@@ -13,5 +13,5 @@
     Gracias por usar nuestro sistema.
 
     Saludos,<br>
-    {{ config('app.name') }}
+    {{ config('app.name') }} Team
 @endcomponent
