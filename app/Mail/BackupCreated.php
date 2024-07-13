@@ -39,7 +39,7 @@ class BackupCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.backup-created',
+            markdown: 'emails.backup-created',
             with: [
                 'backupInformation' => $this->backupInformation,
             ],
