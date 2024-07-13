@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\File;
 
 class DeleteOldBackup implements ShouldQueue
 {
@@ -28,6 +29,14 @@ class DeleteOldBackup implements ShouldQueue
      */
     public function handle(): void
     {
-        // Delete old backups
+        $backupPath = storage_path('backups/');
+        $files = File::files($backupPath);
+
+        foreach ($files as $file) {
+            // Check if the file is older than 30 days
+            if ($file->getMTime() < now()->subDays(7)->getTimestamp()) {
+                File::delete($file->getRealPath());
+            }
+        }
     }
 }
